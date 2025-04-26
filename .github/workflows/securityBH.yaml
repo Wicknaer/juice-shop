@@ -38,3 +38,11 @@ jobs:
         with:
           name: sbom
           path: sbom.json
+          
+      - name: Install Semgrep
+        run: |
+          curl -sL https://semgrep.dev/install.sh | bash
+
+      - name: Run Semgrep Scan
+        run: |
+          ./semgrep/semgrep scan --config=auto --error    
