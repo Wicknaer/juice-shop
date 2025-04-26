@@ -1,4 +1,4 @@
-name: Juice Shop Docker CI/CD + SBOM + SAST Pipeline
+name: Juice Shop Docker CI/CD + SBOM + SAST + Secrets Detection Pipeline
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - master
 
 jobs:
-  docker-build-sbom-sast:
+  docker-build-sbom-sast-secrets:
     runs-on: ubuntu-latest
 
     steps:
@@ -55,3 +55,8 @@ jobs:
         with:
           name: semgrep-sarif
           path: semgrep-results.sarif
+
+      - name: Run Gitleaks secret scan
+        uses: gitleaks/gitleaks-action@v2
+        with:
+          args: "--verbose --redact"
