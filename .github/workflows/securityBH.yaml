@@ -43,6 +43,16 @@ jobs:
         run: |
           curl -sL https://semgrep.dev/install.sh | bash
 
-      - name: Run Semgrep Scan
+      - name: Run Semgrep Scan and Save as SARIF
         run: |
-          ./semgrep/semgrep scan --config=auto --error    
+          ./semgrep/semgrep scan --config=auto --sarif > semgrep-results.sarif
+
+
+      - name: Upload SARIF Artifact
+        uses: actions/uploads-artifact@v4
+        with:
+          name: semgrep-sarif
+          path: semgrep-results.sarif
+          
+
+          
