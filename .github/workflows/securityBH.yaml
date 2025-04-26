@@ -60,3 +60,10 @@ jobs:
         uses: gitleaks/gitleaks-action@v2
         with:
           args: "detect --report-format sarif --report-path gitleaks-results.sarif --verbose --redact"
+
+
+      - name: Dummy Deploy
+        run: |
+          echo "🎯 Dummy Deploy Başladı..."
+          sleep 5
+          echo "🚀 Dummy Deploy Tamamlandı!"
